@@ -85,6 +85,22 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Making code DRY, Components',
+    date: 'Nov 5th, 2019',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
 
@@ -112,3 +128,68 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+//Component creator
+
+function createArticle(title, date, firstPara, secondPara, thirdPara){
+  const article = document.createElement("div");
+  const titleH2 = document.createElement("h2");
+  const dateParagraph = document.createElement("p")
+  const firstParagraph = document.createElement("p");
+  const secondParagraph = document.createElement("p");
+  const thirdParagraph = document.createElement("p");
+  const expandButton = document.createElement("span");
+
+  article.classList.add("article");
+  article.appendChild(titleH2);
+  article.appendChild(dateParagraph).classList.add("date");
+  article.appendChild(firstParagraph);
+  article.appendChild(secondParagraph);
+  article.appendChild(thirdParagraph);
+  article.appendChild(expandButton).classList.add("expandButton");
+  
+
+  // Instructions state to add event listener to the span but the span has a height of 0 x0
+  // it is not allowed to be pressed. added text to make it show for now.
+  expandButton.textContent = "Read More";
+
+  expandButton.addEventListener("click", ()=>{
+    article.classList.toggle("article-open");
+    // expandButton.textContent = "Read More";
+    if(expandButton.textContent == "Read More"){
+      expandButton.textContent = "Close"
+    } else {
+      expandButton.textContent = "Read More"
+    }
+  });
+
+  
+
+  titleH2.textContent = title;
+  dateParagraph.textContent = date;
+  firstParagraph.textContent = firstPara;
+  secondParagraph.textContent = secondPara;
+  thirdParagraph.textContent = thirdPara;
+  
+
+  return article;
+};
+
+const parentContainer = document.querySelector(".articles");
+
+
+//Loop to create articles
+data.forEach(article =>{
+  const newArticle = createArticle(article.title, article.date, article.firstParagraph, article.secondParagraph, article.thirdParagraph)
+
+  parentContainer.appendChild(newArticle);
+
+});
+
+// const newArticle = createArticle(data[0].title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph);
+
+// console.log(data[0]);
+
+// parentContainer.appendChild(newArticle);
+
+// console.log(createArticle());
