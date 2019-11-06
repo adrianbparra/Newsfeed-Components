@@ -75,7 +75,7 @@
   background-color: white;
 }
 .article-open {
-  height: 400px;
+  height: 500px;
 }
 .menu-button {
   position: absolute;
@@ -85,7 +85,7 @@
 .menu {
   position: fixed;
   top: 75px;
-  left: -400px;
+  left: -360px;
   width: 350px;
   height: 100vh;
   /* This give the height 100% of the screen or, '100% of View Height' */

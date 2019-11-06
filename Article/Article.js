@@ -151,11 +151,16 @@ function createArticle(title, date, firstPara, secondPara, thirdPara){
 
   // Instructions state to add event listener to the span but the span has a height of 0 x0
   // it is not allowed to be pressed. added text to make it show for now.
-  expandButton.textContent = "Show Content";
+  expandButton.textContent = "Read More";
 
   expandButton.addEventListener("click", ()=>{
     article.classList.toggle("article-open");
-    expandButton.textContent = "Close Content";
+    // expandButton.textContent = "Read More";
+    if(expandButton.textContent == "Read More"){
+      expandButton.textContent = "Close"
+    } else {
+      expandButton.textContent = "Read More"
+    }
   });
 
   
